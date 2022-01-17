@@ -22,9 +22,19 @@ public:
     void push_back( int licz);
     void pop_front();
     void pop_back();
-    void
+    void insert(node *el,int licz);
+    void remove (node *el);
+    void size();
+    void find();
 
 };
+lista::lista()
+{
+    begin = end = NULL;
+    count=0;
+}
+lista::~lista()
+while(count) pop_front();
 int main()
 {
     return 0;
