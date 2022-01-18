@@ -27,6 +27,7 @@ public:
     void size();
     void find(int licz);
     void wypisz();
+    void empty();
 
 };
 
@@ -42,7 +43,6 @@ while(count) pop_front();
 int podaj_liczbe()
 {
     int liczba;
-    cout<<"podaj liczbe:";
     cin>>liczba;
     return liczba;
 }
@@ -122,14 +122,32 @@ void lista::pop_back()
     if(count) removal(end);
     else cout<<"Brak elementow"<<endl;
 }
-void size()
+void lista::size()
 {
-    cout<<"Liczba elementow w liscie to: "<<count;
+    cout<<"Liczba elementow w liscie to: "<<count<<endl;
 }
-void find(int licz)
+void lista::find(int licz)
 {
-   int i=1;
-   if(licz<count)
+   int i;
+   node *p;
+   if(licz<=(count/2))
+   {
+       p=begin;
+       for(i=1;i!=licz;i++)
+        p=p->next;
+   }
+   else
+   {
+       p=end;
+       for(i=count;i!=licz;i--)
+        p=p->prew;
+   }
+   cout<<"element nr "<<licz<<" zawiera wartosc "<<p->liczba<<endl;
+}
+void lista::empty()
+{
+    if(count==0) cout<<"lista jest pusta"<<endl;
+    else cout<<"lista nie jest pusta"<<endl;
 }
 int main()
 {
