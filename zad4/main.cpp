@@ -1,5 +1,6 @@
 #include <iostream>
-
+#include <conio.h>
+#include <cstdlib>
 using namespace std;
 struct node
 {
@@ -151,5 +152,81 @@ void lista::empty()
 }
 int main()
 {
+    int opcja=0;
+    lista lit;
+    do{
+            system("CLS");
+            lit.wypisz();
+    cout<<endl<<endl;
+    cout<<"Obsluga listy"<<endl;
+    cout<<"1 - push_front"<<endl;
+    cout<<"2 - push_back"<<endl;
+    cout<<"3 - insert_on_position"<<endl;
+    cout<<"4 - pop_front"<<endl;
+    cout<<"5 - pop_back"<<endl;
+    cout<<"6 - remove_on_position"<<endl;
+    cout<<"7 - is_empty"<<endl;
+    cout<<"8 - size"<<endl;
+    cout<<"9 - find_position"<<endl;
+    cout<<"10 - exit_program"<<endl;
+    cout<<endl;
+    cout<<"wybierz opcje: ";
+    cin>>opcja;
+
+    switch(opcja)
+    {
+        case 1:{
+            int liczba;
+            cout<<"podaj liczbe do wpisania do listy: ";
+            liczba = podaj_liczbe();
+            lit.push_front(liczba);
+            break;
+        }
+        case 2:{
+            int liczba;
+            cout<<"podaj liczbe do wpisania do listy: ";
+            liczba = podaj_liczbe();
+            lit.push_back(liczba);
+            break;
+        }
+        case 3:{
+            cout<<"to implement"<<endl;
+            break;
+        }
+        case 4:{
+            lit.pop_front();
+            break;
+        }
+        case 5:{
+            lit.pop_back();
+            break;
+        }
+        case 6:{
+            cout<<"to implement"<<endl;
+            break;
+        }
+        case 7:{
+            lit.empty();
+            break;
+        }
+        case 8:{
+            lit.size();
+            break;
+        }
+        case 9:{
+            cout<<"to implement"<<endl;
+            break;
+        }
+        case 10:{
+            cout<<"wyjscie z programu";
+            getch();
+            break;
+        }
+        default:{
+            cout<<"BRAK OPCJI";
+            break;
+        }
+    }
+    }while(opcja!=10);
     return 0;
 }
