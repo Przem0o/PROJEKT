@@ -2,23 +2,25 @@
 #include <conio.h>
 #include <cstdlib>
 using namespace std;
-struct node
+struct node // struktura elementu listy
 {
     int liczba;
     node *prew;
     node *next;
 };
 
-class lista
+class lista // klasa lista
 {
 public:
+    // atrybuty klasy lista
     node *begin;
     node *end;
     unsigned int count;
 
-    lista();
-    ~lista();
+    lista(); //konstruktor klasy lista
+    ~lista(); //destruktor klasy lista
 
+    // metody klasy lista
     void push_front( int licz);
     void push_back( int licz);
     void pop_front();
@@ -32,23 +34,23 @@ public:
 
 };
 
-lista::lista()
+lista::lista() //konstruktor klasy lista
 {
     begin = end = NULL;
     count=0;
 }
-lista::~lista(){
+lista::~lista(){ //destruktor klasy lista
 while(count) pop_front();
 }
 
-int podaj_liczbe()
+int podaj_liczbe() // funkcja do podania liczby z klawiatury przez u¿ytkownika
 {
     int liczba;
     cin>>liczba;
     return liczba;
 }
 
-void lista::wypisz()
+void lista::wypisz() //funkcja wypisuj¹ca listê
 {
     node *p;
 
@@ -61,7 +63,7 @@ void lista::wypisz()
     }
 }
 
-void lista::push_front(int licz)
+void lista::push_front(int licz) //funkja dodaj¹ca element do listy na pocz¹tek listy
 {
     node *p;
 
@@ -74,7 +76,7 @@ void lista::push_front(int licz)
     if (p->next) {p->next->prew = p;}
     else end=p;
 }
-void lista::push_back(int licz)
+void lista::push_back(int licz) //funkja dodaj¹ca element do listy na pocz¹tek listy
 {
     node *p;
 
@@ -87,7 +89,7 @@ void lista::push_back(int licz)
     if (p->prew) p->prew->next =p;
     else begin=p;
 }
-void lista::insert(node *el,int licz)
+void lista::insert(node *el,int licz) //funkja dodaj¹ca element do listy na podane miejsce w liscie
 {
     node *p;
 
@@ -103,7 +105,7 @@ void lista::insert(node *el,int licz)
         el->prew =p;
     }
 }
-void  lista::removal (node *el)
+void  lista::removal (node *el) //funkcja usuwa podany element listy
 {
     count--;
     if (el->prew) el->prew->next = el->next;
@@ -113,21 +115,23 @@ void  lista::removal (node *el)
     delete el;
 }
 
-void lista::pop_front()
+void lista::pop_front() //funkcja usuwa pierwszy element listy
 {
-    if(count) removal(begin);
-    else cout<<"Brak elementow"<<endl;
+    if(count!=0) removal(begin);
+    else cout<<"Brak elementow w liscie"<<endl;
+    getch();
 }
-void lista::pop_back()
+void lista::pop_back() //funkcja usuwa ostatni element listy
 {
-    if(count) removal(end);
-    else cout<<"Brak elementow"<<endl;
+    if(count!=0) removal(end);
+    else cout<<"Brak elementow w liscie"<<endl;
+    getch();
 }
-void lista::size()
+void lista::size() //funkcja podaje iloœæ elementów w liœcie
 {
     cout<<"Liczba elementow w liscie to: "<<count<<endl;
 }
-void lista::find(int licz)
+void lista::find(int licz) //funkcja znajduje podany element w liœcie
 {
    int i;
    node *p;
@@ -145,7 +149,7 @@ void lista::find(int licz)
    }
    cout<<"element nr "<<licz<<" zawiera wartosc "<<p->liczba<<endl;
 }
-void lista::empty()
+void lista::empty() //funkcja sprawdzaj¹ca czy lista jest pusta
 {
     if(count==0) cout<<"lista jest pusta"<<endl;
     else cout<<"lista nie jest pusta"<<endl;
@@ -156,9 +160,9 @@ int main()
     lista lit;
     do{
             system("CLS");
-            lit.wypisz();
+            lit.wypisz(); // wyœwietlenie listy
     cout<<endl<<endl;
-    cout<<"Obsluga listy"<<endl;
+    cout<<"Obsluga listy"<<endl; // wyswietlenie menu obs³ugi listy
     cout<<"1 - push_front"<<endl;
     cout<<"2 - push_back"<<endl;
     cout<<"3 - insert_on_position"<<endl;
@@ -171,9 +175,9 @@ int main()
     cout<<"10 - exit_program"<<endl;
     cout<<endl;
     cout<<"wybierz opcje: ";
-    cin>>opcja;
+    cin>>opcja; // podanie opcji
 
-    switch(opcja)
+    switch(opcja) // obs³uga listy po wyborze opcji
     {
         case 1:{
             int liczba;
