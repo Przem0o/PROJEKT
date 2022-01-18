@@ -67,11 +67,11 @@ void lista::push_front(int licz)
 
     p = new node;
     p->liczba=licz;
-    p->next=NULL;
-    p->prew=begin;
+    p->prew=NULL;
+    p->next=begin;
     begin=p;
     count++;
-    if (p->next) p->next->prew =p;
+    if (p->next) {p->next->prew = p;}
     else end=p;
 }
 void lista::push_back(int licz)
@@ -191,7 +191,9 @@ int main()
         }
         case 3:{
             cout<<"to implement"<<endl;
+            getch();
             break;
+
         }
         case 4:{
             lit.pop_front();
@@ -203,18 +205,22 @@ int main()
         }
         case 6:{
             cout<<"to implement"<<endl;
+            getch();
             break;
         }
         case 7:{
             lit.empty();
+            getch();
             break;
         }
         case 8:{
             lit.size();
+            getch();
             break;
         }
         case 9:{
             cout<<"to implement"<<endl;
+            getch();
             break;
         }
         case 10:{
