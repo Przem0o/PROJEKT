@@ -48,7 +48,15 @@ while(count) pop_front();
 int podaj_liczbe() // funkcja do podania liczby z klawiatury przez u¿ytkownika
 {
     int liczba;
-    cin>>liczba;
+    while(true){
+       cin>>liczba;
+        if(!cin)
+    {
+       cin.clear();
+       cin.sync();
+    }
+    else break;
+    }
     return liczba;
 }
 
