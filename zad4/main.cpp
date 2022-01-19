@@ -11,10 +11,11 @@ struct node // struktura elementu listy
 
 class lista // klasa lista
 {
-public:
+private:
     // atrybuty klasy lista
     node *begin;
     node *end;
+public:
     unsigned int count;
 
     lista(); //konstruktor klasy lista
@@ -28,7 +29,8 @@ public:
     void insert(node *el,int licz);
     void removal (node *el);
     void size();
-    void find(int licz);
+    node *find(int licz);
+    void find_value(int licz,node *el);
     void wypisz();
     void empty();
 
@@ -118,20 +120,20 @@ void  lista::removal (node *el) //funkcja usuwa podany element listy
 void lista::pop_front() //funkcja usuwa pierwszy element listy
 {
     if(count!=0) removal(begin);
-    else cout<<"Brak elementow w liscie"<<endl;
-    getch();
+    else{ cout<<"Brak elementow w liscie"<<endl;
+    getch();}
 }
 void lista::pop_back() //funkcja usuwa ostatni element listy
 {
     if(count!=0) removal(end);
-    else cout<<"Brak elementow w liscie"<<endl;
-    getch();
+    else{ cout<<"Brak elementow w liscie"<<endl;
+    getch();}
 }
 void lista::size() //funkcja podaje iloœæ elementów w liœcie
 {
     cout<<"Liczba elementow w liscie to: "<<count<<endl;
 }
-void lista::find(int licz) //funkcja znajduje podany element w liœcie
+node *lista::find(int licz) //funkcja znajduje podany element w liœcie
 {
    int i;
    node *p;
@@ -147,8 +149,14 @@ void lista::find(int licz) //funkcja znajduje podany element w liœcie
        for(i=count;i!=licz;i--)
         p=p->prew;
    }
-   cout<<"element nr "<<licz<<" zawiera wartosc "<<p->liczba<<endl;
+   return p;
 }
+
+void lista::find_value(int licz, node *el) //funkcja wyœwietla wartoœc podanego elementu
+{
+    cout<<"element nr "<<licz<<" zawiera wartosc "<<el->liczba<<endl;
+}
+
 void lista::empty() //funkcja sprawdzaj¹ca czy lista jest pusta
 {
     if(count==0) cout<<"lista jest pusta"<<endl;
@@ -194,8 +202,13 @@ int main()
             break;
         }
         case 3:{
-            cout<<"to implement"<<endl;
-            getch();
+            int element;
+            cout<<"podaj numer pozycji gdzie umiescic element : ";
+            element = podaj_liczbe();
+            int liczba;
+            cout<<"podaj liczbe do wpisania do listy: ";
+            liczba = podaj_liczbe();
+            lit.insert(lit.find(element),liczba);
             break;
 
         }
@@ -208,8 +221,10 @@ int main()
             break;
         }
         case 6:{
-            cout<<"to implement"<<endl;
-            getch();
+            int element;
+            cout<<"podaj numer elementu jaki chcesz usunac: ";
+            element = podaj_liczbe();
+            lit.removal(lit.find(element));
             break;
         }
         case 7:{
@@ -223,7 +238,10 @@ int main()
             break;
         }
         case 9:{
-            cout<<"to implement"<<endl;
+            int element;
+            cout<<"podaj numer elementu jaki chcesz znalesc: ";
+            element = podaj_liczbe();
+            lit.find_value(element,lit.find(element));
             getch();
             break;
         }
@@ -234,9 +252,11 @@ int main()
         }
         default:{
             cout<<"BRAK OPCJI";
+            getch();
             break;
         }
     }
     }while(opcja!=10);
+
     return 0;
 }
