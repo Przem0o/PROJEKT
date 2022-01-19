@@ -1,6 +1,7 @@
 #include <iostream>
 #include <conio.h>
 #include <cstdlib>
+#include <fstream>
 using namespace std;
 struct node // struktura elementu listy
 {
@@ -15,13 +16,15 @@ private:
     // atrybuty klasy lista
     node *begin;
     node *end;
-public:
     unsigned int count;
+public:
+
 
     lista(); //konstruktor klasy lista
     ~lista(); //destruktor klasy lista
 
     // metody klasy lista
+    int return_size();
     void push_front( int licz);
     void push_back( int licz);
     void pop_front();
@@ -32,6 +35,7 @@ public:
     node *find(int licz);
     void find_value(int licz,node *el);
     void wypisz();
+    void lista_plik();
     void empty();
 
 };
@@ -59,7 +63,10 @@ int podaj_liczbe() // funkcja do podania liczby z klawiatury przez u¿ytkownika
     }
     return liczba;
 }
-
+int lista::return_size()
+{
+    return count; // zwraca wartoœæ atrybutu count
+}
 void lista::wypisz() //funkcja wypisuj¹ca listê
 {
     node *p;
@@ -72,7 +79,21 @@ void lista::wypisz() //funkcja wypisuj¹ca listê
         p=p->next;
     }
 }
+void lista::lista_plik() //funkcja do zapisu listy w pliku tekstowym
+{
+    node *p;
+    ofstream plik("lista.txt");
+    int i=1;
 
+    p= begin;
+    while(p)
+    {
+        plik<<"el["<<i<<"]="<<p->liczba<<"  ";
+        p=p->next;
+        i++;
+    }
+    plik.close();
+}
 void lista::push_front(int licz) //funkja dodaj¹ca element do listy na pocz¹tek listy
 {
     node *p;
@@ -137,10 +158,7 @@ void lista::pop_back() //funkcja usuwa ostatni element listy
     else{ cout<<"Brak elementow w liscie"<<endl;
     getch();}
 }
-void lista::size() //funkcja podaje iloœæ elementów w liœcie
-{
-    cout<<"Liczba elementow w liscie to: "<<count<<endl;
-}
+
 node *lista::find(int licz) //funkcja znajduje podany element w liœcie
 {
    int i;
@@ -173,6 +191,7 @@ void lista::empty() //funkcja sprawdzaj¹ca czy lista jest pusta
 int main()
 {
     int opcja=0;
+    char plik;
     lista lit;
     do{
             system("CLS");
@@ -184,7 +203,7 @@ int main()
     cout<<"3 - insert_on_position"<<endl;
     cout<<"4 - pop_front"<<endl;
     cout<<"5 - pop_back"<<endl;
-    cout<<"6 - remove_on_position"<<endl;
+    cout<<"6 - remove_from_position"<<endl;
     cout<<"7 - is_empty"<<endl;
     cout<<"8 - size"<<endl;
     cout<<"9 - find_position"<<endl;
@@ -212,11 +231,15 @@ int main()
         case 3:{
             int element;
             cout<<"podaj numer pozycji gdzie umiescic element : ";
-            element = podaj_liczbe();
+            do{
+            element = podaj_liczbe();}while(element<1||element>(lit.return_size()+1));
             int liczba;
             cout<<"podaj liczbe do wpisania do listy: ";
             liczba = podaj_liczbe();
-            lit.insert(lit.find(element),liczba);
+            if(element==lit.return_size()+1)
+                lit.push_back(liczba);
+            else
+                lit.insert(lit.find(element),liczba);
             break;
 
         }
@@ -231,7 +254,8 @@ int main()
         case 6:{
             int element;
             cout<<"podaj numer elementu jaki chcesz usunac: ";
-            element = podaj_liczbe();
+            do{
+            element = podaj_liczbe();}while(element<1||element>lit.return_size());
             lit.removal(lit.find(element));
             break;
         }
@@ -241,21 +265,24 @@ int main()
             break;
         }
         case 8:{
-            lit.size();
+            cout<<"Liczba elementow w liscie to: "<<lit.return_size();
             getch();
             break;
         }
         case 9:{
             int element;
             cout<<"podaj numer elementu jaki chcesz znalesc: ";
-            element = podaj_liczbe();
+            do{
+            element = podaj_liczbe();}while(element<1||element>lit.return_size());
             lit.find_value(element,lit.find(element));
             getch();
             break;
         }
         case 10:{
-            cout<<"wyjscie z programu";
-            getch();
+            cout<<"Czy chesz zapisac liste w pliku(y/n)";
+            cin>>plik;
+            if(plik=='y')
+                lit.lista_plik();
             break;
         }
         default:{
