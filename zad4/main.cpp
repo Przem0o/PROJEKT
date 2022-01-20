@@ -2,43 +2,9 @@
 #include <conio.h>
 #include <cstdlib>
 #include <fstream>
+#include "lista.h"
 using namespace std;
-struct node // struktura elementu listy
-{
-    int liczba;
-    node *prew;
-    node *next;
-};
 
-class lista // klasa lista
-{
-private:
-    // atrybuty klasy lista
-    node *begin;
-    node *end;
-    unsigned int count;
-public:
-
-
-    lista(); //konstruktor klasy lista
-    ~lista(); //destruktor klasy lista
-
-    // metody klasy lista
-    int return_size();
-    void push_front( int licz);
-    void push_back( int licz);
-    void pop_front();
-    void pop_back();
-    void insert(node *el,int licz);
-    void removal (node *el);
-    void size();
-    node *find(int licz);
-    void find_value(int licz,node *el);
-    void wypisz();
-    void lista_plik();
-    void empty();
-
-};
 
 lista::lista() //konstruktor klasy lista
 {
@@ -292,6 +258,5 @@ int main()
         }
     }
     }while(opcja!=10);
-
     return 0;
 }
