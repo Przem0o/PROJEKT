@@ -218,11 +218,17 @@ int main()
             break;
         }
         case 6:{
+            if(lit.return_size()==0)
+            {
+                cout<<"Brak elementow w liscie";
+                getch();
+            }
+            else{
             int element;
             cout<<"podaj numer elementu jaki chcesz usunac: ";
             do{
             element = podaj_liczbe();}while(element<1||element>lit.return_size());
-            lit.removal(lit.find(element));
+            lit.removal(lit.find(element));}
             break;
         }
         case 7:{
@@ -236,11 +242,16 @@ int main()
             break;
         }
         case 9:{
+            if(lit.return_size()==0)
+            {
+                cout<<"Brak elementow w liscie";
+            }
+            else{
             int element;
             cout<<"podaj numer elementu jaki chcesz znalesc: ";
             do{
             element = podaj_liczbe();}while(element<1||element>lit.return_size());
-            lit.find_value(element,lit.find(element));
+            lit.find_value(element,lit.find(element));}
             getch();
             break;
         }
