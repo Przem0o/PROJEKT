@@ -1,0 +1,45 @@
+{
+  "items": [
+    {
+      "text": "Get Started",
+      "items": [
+        {
+          "text": "Overview",
+          "path": "get-started"
+        },
+        {
+          "text": "Single Layer Web Application",
+          "path": "get-started/single-layer-web-application.md"
+        },
+        {
+          "text": "Layered Web Application",
+          "path": "get-started/layered-web-application.md"
+        },
+        {
+          "text": "Microservice Solution",
+          "path": "get-started/microservice.md"
+        },
+        {
+          "text": "Others",
+          "items": [
+            {
+              "text": "Empty ASP.NET Core Application",
+              "path": "get-started/empty-aspnet-core-application.md"
+            },
+            {
+              "text": "MAUI Application",
+              "path": "get-started/maui.md"
+            },
+            {
+              "text": "WPF Application",
+              "path": "get-started/wpf.md"
+            },
+            {
+              "text": "Console Application",
+              "path": "get-started/console.md"
+            }
+          ]
+        }
+      ]
+    }
+}
